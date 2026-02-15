@@ -2,11 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PublicController;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+// PUBLIC CONTROLLER
+Route::get('/', [PublicController::class, 'home'])->name('home');
 
-Route::post('/products/create', [ProductController::class, 'store'] )->name('product.create');
-
-Route::get('/products/index', [ProductController::class, 'index'])->name('product.index');
+// PRODUCT CONTROLLER
+Route::get('product/create', [ProductController::class, 'create'])->name('product.create');
+Route::post('/product/store', [ProductController::class, 'store'] )->name('product.store');
+Route::get('/product/index', [ProductController::class, 'index'])->name('product.index');
